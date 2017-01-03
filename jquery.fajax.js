@@ -4,6 +4,7 @@
 
         var settings = $.extend({
             beforeSend: function(){},
+            afterSend: function(){return true},
             success: function(){},
             error: function(){},
             complete: function(){},
@@ -26,7 +27,8 @@
                 {
                     var data = new FormData(this);
                 }
-
+                
+                if ( settings.afterSend() )
                 $.ajax({
                     url: action,
                     type: method,
